@@ -9,7 +9,7 @@ I wrote this to play around with some of the design principles found in the NSA'
 A trivial reverse TTY shell payload written in Python (these things ship with a Python interpreter) is supplied as a surrogate for nopen in this toolkit, because running sketchy binaries swiped from the NSA seems a tad foolish in production environments. 
 
 ## How to Use?
-For yolo-scanning for beg bounties and mass-exploitation, run the nuclei template supplied (it should also have been upstreamed by now). This will give you a target list.
+For yolo-scanning for beg bounties and mass-exploitation, run the nuclei template supplied (it should also have been upstreamed by now). This will give you a target list. This file is named `nuclei-CVE-2022-31814.yaml`.
 
 For precision carefulling of networks, there are four "modes" you will want to be aware of, and are documented below. Run them in order. These are set using the "--mode" flag.
 
@@ -41,7 +41,7 @@ The first uploads a cleanup script using the webshell.
 
 The second executes the cleanup script.
 
-The cleanup script zaps the logs, deletes the trojan, deletes the webshell, and then deletes itself. It does this in a reasonable manner. Not particularly forensically sound - I may fix that later. 
+The cleanup script zaps the logs, deletes the trojan, deletes the webshell, and then deletes itself. It does this in a reasonable manner (rm -rf). Not particularly forensically sound - I may fix that later by using `dd` to overwrite the files before deleting. I may also write some sed magic to surgically zap the logs, but really, only if I can be fucked. 
 
 ## Other arguments
 
