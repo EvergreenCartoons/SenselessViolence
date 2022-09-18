@@ -52,5 +52,8 @@ The cleanup script zaps the logs, deletes the trojan, deletes the webshell, and 
 - interact - spawns a shitty pseudo shell using the webshell in case you want to run commands, transfer files, etc via the webshell.
 - help (prints a help menu)
 
+## Screenshot of it in action.
+![screenshot](./Screenshot from 2022-09-18 16-03-39.png)
+
 ## References
 IHTeam Advisory: https://www.ihteam.net/advisory/pfblockerng-unauth-rce-vulnerability/
