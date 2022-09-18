@@ -6,7 +6,7 @@ This is an exploitation toolkit for the pfSense pfBlockerNG <= 2.1.4_26 plugins 
 
 I wrote this to play around with some of the design principles found in the NSA's firewall exploitation toolkit - for this reason, its designed to be fully compatible with the nopen implant, have built-in log wiping features, and be extremely reliable by implementing some pre-flight checks (passive and active vulnerability tests). 
 
-A trivial reverse TTY shell payload is supplied as a surrogate for nopen in this toolkit, because running sketchy binaries swiped from the NSA seems a tad foolish in production environments. 
+A trivial reverse TTY shell payload written in Python (these things ship with a Python interpreter) is supplied as a surrogate for nopen in this toolkit, because running sketchy binaries swiped from the NSA seems a tad foolish in production environments. 
 
 ## How to Use?
 For yolo-scanning for beg bounties and mass-exploitation, run the nuclei template supplied (it should also have been upstreamed by now). This will give you a target list.
