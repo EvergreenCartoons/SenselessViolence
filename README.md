@@ -49,11 +49,11 @@ The cleanup script zaps the logs, deletes the trojan, deletes the webshell, and 
 - callbackhost - callback host for trojan
 - callbackport - callback port for trojan
 - target - target base url, eg: https://pfsense.local
-- interact - spawns a shitty pseudo shell using the webshell in case you want to run commands, transfer files, etc via the webshell.
+- interact - spawns a shitty pseudo shell using the webshell in case you want to run commands, transfer files, etc via the webshell. May not be implemented in the public release (its buggy as shit)
 - help (prints a help menu)
 
 ## Screenshot of it in action.
-![screenshot](./Screenshot from 2022-09-18 16-03-39.png)
+![screenshot](https://github.com/EvergreenCartoons/SenselessViolence/blob/main/Screenshot%20from%202022-09-18%2016-03-39.png?raw=true)
 
 ## References
 IHTeam Advisory: https://www.ihteam.net/advisory/pfblockerng-unauth-rce-vulnerability/
