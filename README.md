@@ -45,11 +45,11 @@ The cleanup script zaps the logs, deletes the trojan, deletes the webshell, and 
 
 ## Other arguments
 
-- trojan - path to your trojan executable
-- callbackhost - callback host for trojan
-- callbackport - callback port for trojan
+- trojan - path to your trojan executable/script
+- cbhost - callback host for trojan
+- cbport - callback port for trojan
 - target - target base url, eg: https://pfsense.local
-- interact - spawns a shitty pseudo shell using the webshell in case you want to run commands, transfer files, etc via the webshell. May not be implemented in the public release (its buggy as shit)
+- interact - spawns a shitty pseudo shell using the webshell in case you want to run commands, transfer files, etc via the webshell. May not be implemented in the initial public release (its buggy as shit)
 - help (prints a help menu)
 
 ## Screenshot of it in action (showing the logs are sparkly clean).
