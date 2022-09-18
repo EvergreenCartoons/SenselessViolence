@@ -52,7 +52,7 @@ The cleanup script zaps the logs, deletes the trojan, deletes the webshell, and 
 - interact - spawns a shitty pseudo shell using the webshell in case you want to run commands, transfer files, etc via the webshell. May not be implemented in the public release (its buggy as shit)
 - help (prints a help menu)
 
-## Screenshot of it in action.
+## Screenshot of it in action (showing the logs are sparkly clean).
 ![screenshot](https://github.com/EvergreenCartoons/SenselessViolence/blob/main/Screenshot%20from%202022-09-18%2016-03-39.png?raw=true)
 
 ## References
